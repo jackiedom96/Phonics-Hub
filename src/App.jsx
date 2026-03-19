@@ -1,0 +1,57 @@
+import { useEffect } from 'react'
+import {
+  BrowserRouter,
+  Navigate,
+  Outlet,
+  Route,
+  Routes,
+  useLocation,
+} from 'react-router-dom'
+import { BottomNav } from './components/BottomNav.jsx'
+import { PortalPage } from './components/PortalPage.jsx'
+import { portals } from './data/content.js'
+import { HomePage } from './pages/HomePage.jsx'
+import { SearchPage } from './pages/SearchPage.jsx'
+
+function ScrollToTop() {
+  const location = useLocation()
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [location.pathname, location.search])
+
+  return null
+}
+
+function AppShell() {
+  return (
+    <div className="app-shell">
+      <ScrollToTop />
+      <div className="app-shell__aurora app-shell__aurora--left" />
+      <div className="app-shell__aurora app-shell__aurora--right" />
+      <main className="app-shell__content">
+        <Outlet />
+      </main>
+      <BottomNav />
+    </div>
+  )
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route element={<AppShell />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="/teachers" element={<PortalPage portal={portals.teachers} />} />
+          <Route path="/mentors" element={<PortalPage portal={portals.mentors} />} />
+          <Route path="/admin" element={<PortalPage portal={portals.admin} />} />
+          <Route path="*" element={<Navigate replace to="/" />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  )
+}
+
+export default App
