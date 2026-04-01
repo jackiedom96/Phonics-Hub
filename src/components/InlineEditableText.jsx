@@ -1,4 +1,5 @@
 import { createElement, useId } from 'react'
+import { isEditorEnabled } from '../config/runtime.js'
 import { useAppContent } from '../hooks/useAppContent.js'
 
 export function InlineEditableText({
@@ -14,7 +15,7 @@ export function InlineEditableText({
   const { isInlineEditing } = useAppContent()
   const fieldId = useId()
 
-  if (!isInlineEditing) {
+  if (!isEditorEnabled || !isInlineEditing) {
     return createElement(as, { className }, value)
   }
 

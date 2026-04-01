@@ -415,7 +415,7 @@ export const portals = {
             previewPoints: [
               'Teacher feedback for administration',
               'Leadership support reflection form',
-              'Can be updated from the in-app editor',
+              'Embedded form ready',
             ],
           }),
           createResource({
@@ -588,7 +588,7 @@ export const portals = {
             previewPoints: [
               'Administration teacher snapshot section',
               'Ready for your form URL',
-              'Can be updated from the in-app editor',
+              'Observation feedback form',
             ],
           }),
           createResource({
@@ -619,7 +619,7 @@ export const portals = {
             previewPoints: [
               'Administration teacher snapshot section',
               'Day 2 observation form',
-              'Can be updated from the in-app editor',
+              'Observation feedback form',
             ],
           }),
           createResource({
@@ -644,7 +644,7 @@ export const portals = {
             previewPoints: [
               'Administration mentor snapshot section',
               'Ready for your form URL',
-              'Can be updated from the in-app editor',
+              'Coaching support reflection form',
             ],
           }),
           createResource({
@@ -669,7 +669,7 @@ export const portals = {
             previewPoints: [
               'Administration self-assessment section',
               'Ready for your form URL',
-              'Can be updated from the in-app editor',
+              'Leadership reflection form',
             ],
           }),
         ],

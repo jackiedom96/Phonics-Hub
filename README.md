@@ -5,7 +5,8 @@ Phonics Hub is a responsive React web app for DLEngage that centers around share
 ## Product Summary
 
 - Home screen with the DLEngage logo, the message `Empowering Roslyn Literacy: Closing the 38% Gap.`, and quick-entry cards for the shared support portals.
-- Persistent bottom navigation with `Home`, `Search`, `Instructional`, `Evaluation`, `Feedback`, and `Editor`.
+- Persistent bottom navigation with `Home`, `Search`, `Instructional`, `Evaluation`, and `Feedback`.
+- The `Editor` navigation is available in development and can be enabled explicitly for non-production builds.
 - Three main portals:
   - `Instructional Support` for teachers, mentors, and administration
   - `Evaluation Support` for teachers, mentors, and administration
@@ -86,6 +87,24 @@ Create a production build:
 npm run build
 ```
 
+Preview the production build locally:
+
+```bash
+npm run preview
+```
+
+Production builds hide the editing controls by default:
+
+- `/editor` redirects back to `/`
+- the bottom navigation does not show `Editor` / `Edit`
+- the inline `Edit Wording` control is removed
+
+To force the editor on for a non-dev build, set this before building:
+
+```bash
+VITE_ENABLE_EDITOR=true npm run build
+```
+
 Lint the code:
 
 ```bash
@@ -97,6 +116,28 @@ npm run lint
 - Microsoft Forms are embedded in concept, but v1 uses placeholder content until final form URLs are provided.
 - Canva-derived PDFs are represented with visual document viewer placeholders until final exported files, URLs, or local uploaded PDFs are available.
 - Search is resource-focused and does not store or query submission data.
+
+## Deployment
+
+This Vite SPA is set up for Vercel deployment with client-side route rewrites through `vercel.json`.
+
+Suggested flow for `dlengage.com`:
+
+1. Push the repo to GitHub.
+2. Import it into Vercel.
+3. Keep the detected settings:
+   - Framework preset: `Vite`
+   - Build command: `npm run build`
+   - Output directory: `dist`
+4. Add `dlengage.com` and `www.dlengage.com` to the Vercel project.
+5. Point DNS to the records Vercel shows for your project.
+6. Pick one canonical domain and redirect the other to it.
+
+If DNS is managed outside Vercel, add the exact records returned by:
+
+```bash
+vercel domains inspect dlengage.com
+```
 
 ## Source Inputs
 

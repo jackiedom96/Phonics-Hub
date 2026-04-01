@@ -12,6 +12,7 @@ import { AdminEditorPanel } from './components/AdminEditorPanel.jsx'
 import { BottomNav } from './components/BottomNav.jsx'
 import { InlineEditToggle } from './components/InlineEditToggle.jsx'
 import { PortalPage } from './components/PortalPage.jsx'
+import { isEditorEnabled } from './config/runtime.js'
 import { HomePage } from './pages/HomePage.jsx'
 import { SearchPage } from './pages/SearchPage.jsx'
 
@@ -34,7 +35,7 @@ function AppShell() {
       <main className="app-shell__content">
         <Outlet />
       </main>
-      <InlineEditToggle />
+      {isEditorEnabled ? <InlineEditToggle /> : null}
       <BottomNav />
     </div>
   )
@@ -65,7 +66,10 @@ function App() {
               element={<PortalPage portalId="evaluationSupport" />}
             />
             <Route path="/feedback-form" element={<PortalPage portalId="feedbackForm" />} />
-            <Route path="/editor" element={<EditorPage />} />
+            <Route
+              path="/editor"
+              element={isEditorEnabled ? <EditorPage /> : <Navigate replace to="/" />}
+            />
             <Route path="*" element={<Navigate replace to="/" />} />
           </Route>
         </Routes>

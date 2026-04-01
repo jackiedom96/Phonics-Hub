@@ -10,6 +10,7 @@ import {
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { InlineEditableText } from '../components/InlineEditableText.jsx'
+import { isEditorEnabled } from '../config/runtime.js'
 import { useAppContent } from '../hooks/useAppContent.js'
 
 const iconMap = {
@@ -113,9 +114,11 @@ export function HomePage() {
             <Link className="hero-button hero-button--accent" to="/search">
               Search Resources
             </Link>
-            <Link className="ghost-button" to="/editor">
-              Manage Content
-            </Link>
+            {isEditorEnabled ? (
+              <Link className="ghost-button" to="/editor">
+                Manage Content
+              </Link>
+            ) : null}
           </div>
 
           <div className="hero-pills">
