@@ -1,4 +1,5 @@
 import { ExternalLink, Star } from 'lucide-react'
+import { isEditorEnabled } from '../config/runtime.js'
 import { useAppContent } from '../hooks/useAppContent.js'
 import { InlineEditableText } from './InlineEditableText.jsx'
 
@@ -146,8 +147,12 @@ export function ResourceViewer({ compact = false, onSelect, resource }) {
         ) : (
           <p className="note-text">
             {resource.hasUploadedPdf
-              ? 'This viewer is using a PDF uploaded from the admin editor in this browser.'
-              : 'Add a form link, document URL, or uploaded PDF from the admin editor.'}
+              ? isEditorEnabled
+                ? 'This viewer is using a PDF uploaded from the admin editor in this browser.'
+                : 'This viewer is using a PDF stored on this device.'
+              : isEditorEnabled
+                ? 'Add a form link, document URL, or uploaded PDF from the admin editor.'
+                : 'This resource link is not available yet.'}
           </p>
         )}
       </div>

@@ -11,6 +11,7 @@ import {
   listPdfAssets,
   savePdfAsset,
 } from '../lib/pdfAssetStore.js'
+import { isEditorEnabled } from '../config/runtime.js'
 
 const STORAGE_KEY = 'phonics-hub-content-v6'
 
@@ -842,7 +843,7 @@ function updateResourcesTree(currentContent, resourceIds, field, value) {
 
 export function AppContentProvider({ children }) {
   const [content, setContent] = useState(loadStoredContent)
-  const [isInlineEditing, setInlineEditing] = useState(false)
+  const [isInlineEditing, setInlineEditingState] = useState(false)
   const [pdfAssetUrls, setPdfAssetUrls] = useState({})
   const pdfAssetUrlsRef = useRef({})
 
@@ -1008,8 +1009,22 @@ export function AppContentProvider({ children }) {
     window.localStorage.removeItem(STORAGE_KEY)
   }
 
+  const setInlineEditing = (nextValue) => {
+    if (!isEditorEnabled) {
+      setInlineEditingState(false)
+      return
+    }
+
+    setInlineEditingState(nextValue)
+  }
+
   const toggleInlineEditing = () => {
-    setInlineEditing((currentValue) => !currentValue)
+    if (!isEditorEnabled) {
+      setInlineEditingState(false)
+      return
+    }
+
+    setInlineEditingState((currentValue) => !currentValue)
   }
 
   const contextValue = {
@@ -1017,9 +1032,10 @@ export function AppContentProvider({ children }) {
     buildNotes:
       'Changes save automatically in this browser. Uploaded PDFs stay local to this device unless you also add a shareable URL.',
     content: hydratedContent,
+    isEditorEnabled,
     featuredSearches: buildFeaturedSearches(hydratedContent),
     homeCards: hydratedContent.homeCards,
-    isInlineEditing,
+    isInlineEditing: isEditorEnabled ? isInlineEditing : false,
     portals: hydratedContent.portals,
     rawContent: content,
     resetContent,

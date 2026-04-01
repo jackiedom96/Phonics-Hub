@@ -11,6 +11,7 @@ import {
   UsersRound,
 } from 'lucide-react'
 import { useSearchParams } from 'react-router-dom'
+import { isEditorEnabled } from '../config/runtime.js'
 import { useAppContent } from '../hooks/useAppContent.js'
 import { InlineEditableText } from './InlineEditableText.jsx'
 import { ResourceViewer } from './ResourceViewer.jsx'
@@ -148,8 +149,12 @@ function FeedbackLaunchCard({ accent, onUpdateResourceField, resource }) {
         />
         <p className="selector-card__helper">
           {resource.type === 'form'
-            ? 'Add a form link in the editor to open it here.'
-            : 'Add a resource link in the editor to open it here.'}
+            ? isEditorEnabled
+              ? 'Add a form link in the editor to open it here.'
+              : 'This form is not available yet.'
+            : isEditorEnabled
+              ? 'Add a resource link in the editor to open it here.'
+              : 'This resource is not available yet.'}
         </p>
       </article>
     )

@@ -1,8 +1,13 @@
 import { Check, PencilLine } from 'lucide-react'
+import { isEditorEnabled } from '../config/runtime.js'
 import { useAppContent } from '../hooks/useAppContent.js'
 
 export function InlineEditToggle() {
   const { isInlineEditing, toggleInlineEditing } = useAppContent()
+
+  if (!isEditorEnabled) {
+    return null
+  }
 
   return (
     <div className="inline-edit-panel surface-card">
