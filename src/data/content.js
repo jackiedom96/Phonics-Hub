@@ -72,7 +72,7 @@ export const portals = {
     accent: 'orange',
     eyebrow: 'Shared Stakeholder Portal',
     description:
-      'A shared evaluation support portal for teachers, mentors, and administration. This is where evaluation-facing Canva resources, job aids, and checklist materials will live.',
+      'A shared evaluation support portal for teachers, mentors, and administration. This is where evaluation-facing Canva resources, job aids, and checklist materials live.',
     highlights: ['Teachers', 'Mentors', 'Administration'],
     sections: [
       {
@@ -157,7 +157,7 @@ export const portals = {
     accent: 'teal',
     eyebrow: 'Shared Stakeholder Portal',
     description:
-      'A shared instructional support portal for teachers, mentors, and administration. This is where instructional Canva resources and support materials will live.',
+      'A shared instructional support portal for teachers, mentors, and administration. This is where instructional Canva resources and support materials live.',
     highlights: ['Teachers', 'Mentors', 'Administration'],
     sections: [
       {
@@ -312,7 +312,7 @@ export const portals = {
     accent: 'green',
     eyebrow: 'Shared Stakeholder Portal',
     description:
-      'A shared feedback form portal for teachers, mentors, and administration. This is where your form links will be embedded by stakeholder section.',
+      'A shared feedback form portal for teachers, mentors, and administration. This is where your form links are embedded by stakeholder section.',
     highlights: [],
     guidanceResource: createResource({
       id: 'feedback-guidance-multi-source',
