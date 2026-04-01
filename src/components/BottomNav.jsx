@@ -57,6 +57,7 @@ export function BottomNav() {
     <nav
       className="bottom-nav"
       aria-label="Primary navigation"
+      data-nav-items={navItems.length}
       style={{ '--nav-item-count': String(navItems.length) }}
     >
       {navItems.map(({ to, label, shortLabel, renderIcon, end }) => (
